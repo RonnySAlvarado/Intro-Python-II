@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,9 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+newplayer = Player('Ronny', room['outside'])
+completion = False
+
 
 # Write a loop that:
 #
@@ -49,3 +53,16 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while completion == False:
+    # print(newplayer.__str__())
+    print(f'{newplayer.name} is now in the {newplayer.currentRoom.location}. {newplayer.currentRoom.description}')
+    movement = input(
+        "Where would you like to go? n, e, s, w -> q to exit game:    ")
+    if movement == 'q':
+        completion = True
+        print('Thanks for playing.')
+    elif movement == 'n' or movement == 'e' or movement == 's' or movement == 'w':
+        newplayer.move_player(movement)
+    else:
+        print('Please choose a valid movement')
