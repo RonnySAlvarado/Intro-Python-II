@@ -70,13 +70,11 @@ while completion == False:
     print(f'\n\n{newplayer.name} is now in the {newplayer.currentRoom.location}. {newplayer.currentRoom.description}\n')
     if(len(newplayer.currentRoom.items) > 0):
         print(
-            f'The following items are observed in this room. {[item.name for item in newplayer.currentRoom.items]}\n')
+            f'The following items are observed in this room: {[item.name for item in newplayer.currentRoom.items]}\n')
     else:
         print('There are no items left in this room.\n')
-    print(
-        f'Your inventory now consists of the following items: {[item.name for item in newplayer.items]} \n')
     movement = input(
-        f"What would you like to do? \nN(n), E(e), S(s), W(w) to move \nType 'get' and the name of the item to add the item to player inventory.\nType 'remove' and the name of the item to remove the item from the player inventory.\nPress Q(q) to exit.\n\n")
+        f"What would you like to do? \nN(n), E(e), S(s), W(w) to move \nType 'get' and the name of the item to add the item to player inventory.\nI(i) to view your inventory.\nType 'remove' and the name of the item to remove the item from the player inventory.\nPress Q(q) to exit.\n\n")
     result = movement.split(' ')
     if result[0] == 'get':
         for item in newplayer.currentRoom.items:
@@ -100,5 +98,8 @@ while completion == False:
         print('Thanks for playing.')
     elif movement.lower() == 'n' or movement.lower() == 'e' or movement.lower() == 's' or movement.lower() == 'w':
         newplayer.move_player(movement)
+    elif movement.lower() == 'i':
+        print(
+            f'\nThe items in your inventory are as followed: {[item.name for item in newplayer.items]} \n')
     else:
         print('Please choose a valid movement or action.')
